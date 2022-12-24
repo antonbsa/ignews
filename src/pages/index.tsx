@@ -8,12 +8,12 @@ import styles from './home.module.scss';
 interface HomeProps {
   product: {
     priceId: string,
-    amount: number;
+    amount: string;
   }
 }
 
 export default function Home({ product }: HomeProps) {
-  const { amount, priceId } = product;
+  const { amount } = product;
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function Home({ product }: HomeProps) {
             Get access to all the publications <br />
             <span>for {amount} month</span>
           </p>
-          <SubscribeButton priceId={priceId} />
+          <SubscribeButton />
         </section>
         <img src="/images/avatar.svg" alt="Girl coding" />
       </main>
