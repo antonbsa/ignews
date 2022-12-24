@@ -1,7 +1,7 @@
 import { SingInButton } from '../SingInButton';
 
 import styles from './styles.module.scss';
-import { ActiveLink } from '../activeLink';
+import { ActiveLink } from '../ActiveLink';
 
 export function Header() {
   return (
