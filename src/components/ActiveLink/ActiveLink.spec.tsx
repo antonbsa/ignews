@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ActiveLink } from '.';
 
 jest.mock('next/router', () => {
@@ -14,38 +14,34 @@ jest.mock('next/router', () => {
 describe('ActiveLink component', () => {
   it("should renders correctly", () => {
     const internalName = 'Home';
-    const { debug, getByText } = render(
+    render(
       <ActiveLink href="/" activeClassName="active">
         <span>{internalName}</span>
       </ActiveLink>
     );
   
-    // debug();
-    expect(getByText(internalName)).toBeInTheDocument();
-    // expect(getByText(`${internalName}2`)).not.toBeInTheDocument();
+    expect(screen.getByText(internalName)).toBeInTheDocument();
   });
   
   it("should be receiving active class", () => {
     const internalName = 'Home';
-    const { debug, getByText } = render(
+    render(
       <ActiveLink href="/" activeClassName="active">
         <span>{internalName}</span>
       </ActiveLink>
     );
   
-    // debug();
-    expect(getByText(internalName)).toHaveClass('active');
+    expect(screen.getByText(internalName)).toHaveClass('active');
   });
   
   it("should not receive active class when the path is not the same as the current", () => {
     const internalName = 'Home';
-    const { debug, getByText } = render(
+    render(
       <ActiveLink href="/outro" activeClassName="active">
         <span>{internalName}</span>
       </ActiveLink>
     );
   
-    // debug();
-    expect(getByText(internalName)).not.toHaveClass('active');
+    expect(screen.getByText(internalName)).not.toHaveClass('active');
   });
 });
