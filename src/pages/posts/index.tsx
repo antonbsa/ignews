@@ -46,11 +46,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
   const response = await prismic.getAllByType('post');
-  console.log('aqui')
-
-  // const response = await prismic.get<any>([
-  //   Prismic.predicate.at('document.type', 'post')
-  // ])
 
   const posts = response.map((post) => {
     return {

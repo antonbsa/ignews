@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { Session } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import { query as q } from 'faunadb';
 
@@ -11,7 +11,7 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       authorization: {
         params: {
-          scope: 'read:user'
+          scope: 'read:user user:email'
         }
       }
     }),
@@ -41,13 +41,12 @@ export default NextAuth({
         )
       )
 
-
       return {
         ...session,
         activeSubscription: userActiveSubscription
-      };
+      } as Session;
     },
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       const { email } = user;
       try {
         await fauna.query(
